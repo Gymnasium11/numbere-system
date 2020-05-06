@@ -93,9 +93,6 @@ class Application:
         self.entry_from.delete(0, END)
         self.result['text'] = 0
 
-    
-        
-
 
 def main():
     global root
