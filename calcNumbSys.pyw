@@ -10,7 +10,9 @@ class Calc:
         # master.maxsize(width=350, height=600)
         # master.minsize(width=350, height=600)
         master.iconbitmap(r'calculator_icon.ico')
+
         # menu
+
         Main_menu = Menu(master)
         master.config(menu=Main_menu)
         File_Menu = Menu(Main_menu, tearoff=False)
@@ -28,18 +30,23 @@ class Calc:
         master.rowconfigure(0, weight=1)
 
         # для entry
+
         self.system_from = StringVar()
         self.system_in = StringVar()
         self.number_from = StringVar()
         self.number_in = StringVar()
         self.dots_count = StringVar()
+
         # тексты entryes и comboboxes
+
         ttk.Label(mainframe, text='Системы счисления', font='arial 14 bold').grid(column=0, row=0, columnspan=3,
                                                                                   sticky=N, pady='0 10')
+
         ttk.Label(mainframe, text='Введите число', font='arial 8').grid(column=0, row=1, sticky=W)
         ttk.Label(mainframe, text='Система', font='arial 8').grid(column=1, row=1, sticky=E, padx='30 0')
         self.systemCom_from = ttk.Combobox(mainframe, width=4, textvariable=self.system_from,
                                            values=(tuple((i for i in range(2, 17)))))
+
         self.entry_from = ttk.Entry(mainframe, width=30, textvariable=self.number_from)
         self.entry_from.grid(column=0, row=2, sticky=E, pady='5 20')
         self.entry_from.focus()
@@ -49,15 +56,20 @@ class Calc:
         ttk.Label(mainframe, text='Система', font='arial 8').grid(column=1, row=3, sticky=E, padx='30 0')
         self.entry_to = ttk.Entry(mainframe, width=30, textvariable=self.number_in)
         self.entry_to.grid(column=0, row=4, sticky=E, pady='5 20')
+
         self.systemCom_to = ttk.Combobox(mainframe, width=4, textvariable=self.system_in,
                                          values=(tuple((i for i in range(2, 17)))))
         self.systemCom_to.grid(column=1, row=4, sticky=E, pady='5 20', padx='30 0')
+
         # Количество знаков после запятой
+
         ttk.Label(mainframe, text='Количество знаков после запятой', font='arial 8').grid(column=0, row=5, sticky=W)
         self.result_dots = ttk.Combobox(mainframe, width=4, textvariable=self.dots_count,
                                         values=(tuple((i for i in range(0, 30)))))
         self.result_dots.grid(column=1, row=5, sticky=E, padx='30 0')
+
         # frame с кнопками и результатом
+
         resultframe = ttk.Frame(master, padding="30 0 30 20")
         resultframe.grid(column=0, row=1, sticky=(N, W, E, S))
         button = ttk.Button(resultframe, text='Вычислить', width=18, command=root.destroy)
@@ -71,9 +83,13 @@ class Calc:
     def clear_trans(self):
         self.entry_to.delete(0, END)
         self.entry_from.delete(0, END)
-        self.result['text']= 0
+        self.result['text'] = 0
 
+def main():
+    global root
+    root = Tk()
+    window = Calc(root)
+    root.mainloop()
 
-root = Tk()
-window = Calc(root)
-root.mainloop()
+if __name__ == "__main__":
+    main()
