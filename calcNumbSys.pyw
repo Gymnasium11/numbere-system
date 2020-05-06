@@ -18,6 +18,7 @@ class Application:
         File_Menu = Menu(Main_menu, tearoff=False)
         Main_menu.add_cascade(label='File', menu=File_Menu)
         Main_menu.add_cascade(label='About')
+        Main_menu.add_cascade(label='Help')
         Main_menu.add_cascade(label='Exit', command=master.destroy)
         File_Menu.add_command(label='New')
         File_Menu.add_command(label='Save')
@@ -88,7 +89,7 @@ class Application:
 def main():
     global root
     root = Tk()
-    window = Calc(root)
+    window = Application(root)
     root.mainloop()
 
 if __name__ == "__main__":
