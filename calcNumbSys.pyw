@@ -1,6 +1,14 @@
 from tkinter import *
+from tkinter import messagebox
 import tkinter.ttk as ttk
+import About
 
+
+def show_about():
+      global root
+      root = Tk()
+      window = About(root)
+      root.mainloop()
 
 class Application:
     def __init__(self, master):
@@ -19,8 +27,14 @@ class Application:
         self.master.config(menu=Main_menu)
         File_Menu = Menu(Main_menu, tearoff=False)
         Main_menu.add_cascade(label='File', menu=File_Menu)
+<<<<<<< HEAD
         Main_menu.add_cascade(label='About')
         Main_menu.add_cascade(label='Exit', command=self.master.destroy)
+=======
+        Main_menu.add_cascade(label='About', command=show_about)
+        Main_menu.add_cascade(label='Help')
+        Main_menu.add_cascade(label='Exit', command=master.destroy)
+>>>>>>> 10df341739e937ba62821f846049bc4b40c6f798
         File_Menu.add_command(label='New')
         File_Menu.add_command(label='Save')
         File_Menu.add_separator()
@@ -81,6 +95,10 @@ class Application:
         self.entry_to.delete(0, END)
         self.entry_from.delete(0, END)
         self.result['text'] = 0
+
+    
+        
+
 
 def main():
     global root
