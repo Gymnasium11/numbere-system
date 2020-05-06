@@ -4,13 +4,16 @@ import tkinter.ttk as ttk
 
 class Application:
     def __init__(self, master):
+
         # window
         master.title("Системы счисления")
         # master.geometry('350x600')
         # master.maxsize(width=350, height=600)
         # master.minsize(width=350, height=600)
         master.iconbitmap(r'calculator_icon.ico')
+
         # menu
+
         Main_menu = Menu(master)
         master.config(menu=Main_menu)
         File_Menu = Menu(Main_menu, tearoff=False)
@@ -21,19 +24,18 @@ class Application:
         File_Menu.add_command(label='Save')
         File_Menu.add_separator()
         File_Menu.add_command(label='Exit', command=master.destroy)
-
         mainframe = ttk.Frame(master, padding="30 20")
         mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
         master.columnconfigure(0, weight=1)
         master.rowconfigure(0, weight=1)
 
-        # для entry
+        # for entryes
         self.system_from = StringVar()
         self.system_in = StringVar()
         self.number_from = StringVar()
         self.number_in = StringVar()
         self.dots_count = StringVar()
-        # тексты entryes и comboboxes
+        # texts entryes и comboboxes
         ttk.Label(mainframe, text='Системы счисления', font='arial 14 bold').grid(column=0, row=0, columnspan=3,
                                                                                   sticky=N, pady='0 10')
         ttk.Label(mainframe, text='Введите число', font='arial 8').grid(column=0, row=1, sticky=W)
