@@ -9,7 +9,7 @@ class Calc:
         # master.geometry('350x600')
         # master.maxsize(width=350, height=600)
         # master.minsize(width=350, height=600)
-        #master.iconbitmap(r'calculator_icon.ico')
+        master.iconbitmap(r'calculator_icon.ico')
         # menu
         Main_menu = Menu(master)
         master.config(menu=Main_menu)
