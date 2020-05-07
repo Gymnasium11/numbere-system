@@ -26,9 +26,7 @@ class Application:
         Main_menu = Menu(self.master)
         self.master.config(menu=Main_menu)
         File_Menu = Menu(Main_menu, tearoff=False)
-        Main_menu.add_cascade(label='File', menu=File_Menu)
-        Main_menu.add_cascade(label='About')
-        Main_menu.add_cascade(label='Exit', command=self.master.destroy)
+        Main_menu.add_cascade(label='File', menu=File_Menu)     
         Main_menu.add_cascade(label='About', command=show_about)
         Main_menu.add_cascade(label='Help')
         Main_menu.add_cascade(label='Exit', command=master.destroy)
@@ -80,19 +78,33 @@ class Application:
 
         resultframe = ttk.Frame(self.master, padding="30 0 30 20")
         resultframe.grid(column=0, row=1, sticky=(N, W, E, S))
+<<<<<<< HEAD
         button = ttk.Button(resultframe, text='Перевести', padding='25 0', width=10, command=self.translate)
         button.grid(column=0, row=0, sticky=N, padx='0 20')
         button = ttk.Button(resultframe, text='Стереть', padding='25 0', width=10, command=self.clear)
         button.grid(column=1, row=0, sticky=N, padx='10 0')
         #set default values
+=======
+        button = ttk.Button(resultframe, text='Вычислить', width=18, command=self.translate)
+        button.grid(column=0, columnspan=2, row=0, sticky=W, padx='0 20')
+        button = ttk.Button(resultframe, text='Стереть', width=18, command=self.clear)
+        button.grid(column=3, row=0, sticky=E, padx='10 0')
+        ttk.Label(resultframe, text='Результат:', font='arial 11 bold').grid(column=0, row=1, sticky=W, pady='15 0')
+        self.result = ttk.Label(resultframe, text='0', font='arial 14')
+        self.result.grid(column=1, row=1, sticky=W, columnspan=3, pady='13 0')
+
+        # set default
+
+>>>>>>> be646ace806883f1a9dcbea26a8fe75f797ec39a
         self.systemCom_from.insert(0, "10")
         self.systemCom_to.insert(0, "2")
         self.result_dots.insert(0, '0')
+
     def clear(self):
         self.entry_to.delete(0, END)
         self.entry_from.delete(0, END)
 
-    def ten_to_q(self,number, base):
+    def ten_to_q(self, number, base):
         '''функция перевода из десятичной системы счисления
         в любую другую систему счисления'''
         # fixme ниже просто код для тестов ЕГО нужно поправить
@@ -106,6 +118,10 @@ class Application:
         result = number
         return result
 
+    def fract_ten_to_q(self, number, base, comma):
+        # fixme
+        pass
+
     def translate(self, *args):
         '''функция перевода чисел из одной системы счисления в другую.
         Данная функция будет обращаться за помощью к функциям
@@ -116,6 +132,7 @@ class Application:
         # fixme Ниже код для тестов, его нужно править
         # fixme но я думаю что if elif else тут будет уместно
         print(type(base))
+        # fixme определиться с целом либо дробным числом
         if base == 10:
             print(self.ten_to_q(number, base))
         elif base != 10 and to_base == 10:
@@ -123,7 +140,6 @@ class Application:
         else:
             # fixme тут придется вызвать обе вспомогательные функции
             pass
-
 
 
 def main():
