@@ -76,25 +76,22 @@ class Application:
                                         values=(tuple((i for i in range(0, 30)))))
         self.result_dots.grid(column=1, row=5, sticky=E, padx='30 0')
 
-        # frame with button and result
+        # frame with buttons
 
         resultframe = ttk.Frame(self.master, padding="30 0 30 20")
         resultframe.grid(column=0, row=1, sticky=(N, W, E, S))
-        button = ttk.Button(resultframe, text='Вычислить', width=18, command=self.translate)
-        button.grid(column=0, columnspan=2, row=0, sticky=W, padx='0 20')
-        button = ttk.Button(resultframe, text='Стереть', width=18, command=self.clear)
-        button.grid(column=3, row=0, sticky=E, padx='10 0')
-        ttk.Label(resultframe, text='Результат:', font='arial 11 bold').grid(column=0, row=1, sticky=W, pady='15 0')
-        self.result = ttk.Label(resultframe, text='0', font='arial 14')
-        self.result.grid(column=1, row=1, sticky=W, columnspan=3, pady='13 0')
-
+        print(resultframe.winfo_geometry())
+        button = ttk.Button(resultframe, text='Перевести', padding='25 0', width=10, command=self.translate)
+        button.grid(column=0, row=0, sticky=N, padx='0 20')
+        button = ttk.Button(resultframe, text='Стереть', padding='25 0', width=10, command=self.clear)
+        button.grid(column=1, row=0, sticky=N, padx='10 0')
+        #set default values
         self.systemCom_from.insert(0, "10")
         self.systemCom_to.insert(0, "2")
         self.result_dots.insert(0, '0')
     def clear(self):
         self.entry_to.delete(0, END)
         self.entry_from.delete(0, END)
-        self.result['text'] = 0
 
     def ten_to_q(self,number, base):
         '''функция перевода из десятичной системы счисления
