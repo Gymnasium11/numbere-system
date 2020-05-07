@@ -17,8 +17,7 @@ class Application:
         # window
 
         self.master.title("Системы счисления")
-        # self.master.maxsize(width=326, height=309)
-        # self.master.minsize(width=326, height=309)
+
         self.master.iconbitmap(r'calculator_icon.ico')
 
         # menu
@@ -122,6 +121,13 @@ class Application:
         self.decimalCom.insert(0, "+")
         self.systemCom.insert(0, 2)
 
+        #fixed window
+
+        self.master.update()
+        w = root.winfo_width()  # width of window
+        h = root.winfo_height() # height of window
+        self.master.maxsize(width=w, height=h)
+        self.master.minsize(width=w, height=h)
     def clear(self, list_with):
         for i in list_with:
 
