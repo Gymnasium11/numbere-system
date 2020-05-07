@@ -88,6 +88,9 @@ class Application:
         self.result = ttk.Label(resultframe, text='0', font='arial 14')
         self.result.grid(column=1, row=1, sticky=W, columnspan=3, pady='13 0')
 
+        self.systemCom_from.insert(0, "10")
+        self.systemCom_to.insert(0, "2")
+        self.result_dots.insert(0, '0')
     def clear(self):
         self.entry_to.delete(0, END)
         self.entry_from.delete(0, END)
