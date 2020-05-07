@@ -88,15 +88,18 @@ class Application:
         self.result = ttk.Label(resultframe, text='0', font='arial 14')
         self.result.grid(column=1, row=1, sticky=W, columnspan=3, pady='13 0')
 
+        # set default
+
         self.systemCom_from.insert(0, "10")
         self.systemCom_to.insert(0, "2")
         self.result_dots.insert(0, '0')
+
     def clear(self):
         self.entry_to.delete(0, END)
         self.entry_from.delete(0, END)
         self.result['text'] = 0
 
-    def ten_to_q(self,number, base):
+    def ten_to_q(self, number, base):
         '''функция перевода из десятичной системы счисления
         в любую другую систему счисления'''
         # fixme ниже просто код для тестов ЕГО нужно поправить
@@ -110,6 +113,10 @@ class Application:
         result = number
         return result
 
+    def fract_ten_to_q(self, number, base, comma):
+        # fixme
+        pass
+
     def translate(self, *args):
         '''функция перевода чисел из одной системы счисления в другую.
         Данная функция будет обращаться за помощью к функциям
@@ -120,6 +127,7 @@ class Application:
         # fixme Ниже код для тестов, его нужно править
         # fixme но я думаю что if elif else тут будет уместно
         print(type(base))
+        # fixme определиться с целом либо дробным числом
         if base == 10:
             print(self.ten_to_q(number, base))
         elif base != 10 and to_base == 10:
@@ -127,7 +135,6 @@ class Application:
         else:
             # fixme тут придется вызвать обе вспомогательные функции
             pass
-
 
 
 def main():
