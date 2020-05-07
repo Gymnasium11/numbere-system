@@ -1,9 +1,18 @@
 import unittest
-from calcNumbSys import Application
+from calcNumbSys import *
+from tkinter import *
 
-class TestApplication(unittest.TestCase):
-    def test_something(self):
-        self.assertEqual(True, False)
+
+class ApplicationTest(unittest.TestCase):
+
+    def setUp(self):
+        root = Tk()
+        self.window = Application(root)
+
+    def test_ten_to_q(self):
+        result = self.window.ten_to_q(15, 16)
+        self.assertEqual(result, 'f')
+        self.assertEqual(self.window.ten_to_q(10,8), '12')
 
 
 if __name__ == '__main__':

@@ -17,8 +17,8 @@ class Application:
         # window
 
         self.master.title("Системы счисления")
-        self.master.maxsize(width=326, height=309)
-        self.master.minsize(width=326, height=309)
+        # self.master.maxsize(width=326, height=309)
+        # self.master.minsize(width=326, height=309)
         self.master.iconbitmap(r'calculator_icon.ico')
 
         # menu
@@ -80,7 +80,7 @@ class Application:
 
         resultframe = ttk.Frame(self.master, padding="30 0 30 20")
         resultframe.grid(column=0, row=1, sticky=(N, W, E, S))
-        button = ttk.Button(resultframe, text='Вычислить', width=18, command=root.destroy)
+        button = ttk.Button(resultframe, text='Вычислить', width=18, command=self.translate)
         button.grid(column=0, columnspan=2, row=0, sticky=W, padx='0 20')
         button = ttk.Button(resultframe, text='Стереть', width=18, command=self.clear)
         button.grid(column=3, row=0, sticky=E, padx='10 0')
@@ -92,6 +92,39 @@ class Application:
         self.entry_to.delete(0, END)
         self.entry_from.delete(0, END)
         self.result['text'] = 0
+
+    def ten_to_q(self,number, base):
+        '''функция перевода из десятичной системы счисления
+        в любую другую систему счисления'''
+        # fixme ниже просто код для тестов ЕГО нужно поправить
+        result = hex(number)[2:]
+        return result
+
+    def q_to_ten(self, number, base):
+        '''функция перевода из любой системы счисления
+        в десятичную систему счисления'''
+        # fixme ниже просто код для тестов ЕГО нужно поправить
+        result = number
+        return result
+
+    def translate(self, *args):
+        '''функция перевода чисел из одной системы счисления в другую.
+        Данная функция будет обращаться за помощью к функциям
+        ten_to_q а также к функции q_to_ten'''
+        number = int(self.number_from.get())
+        base = int(self.systemCom_from.get())
+        to_base = int(self.systemCom_to.get())
+        # fixme Ниже код для тестов, его нужно править
+        # fixme но я думаю что if elif else тут будет уместно
+        print(type(base))
+        if base == 10:
+            print(self.ten_to_q(number, base))
+        elif base != 10 and to_base == 10:
+            print(self.q_to_ten(number, base))
+        else:
+            # fixme тут придется вызвать обе вспомогательные функции
+            pass
+
 
 
 def main():
