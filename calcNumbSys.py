@@ -39,63 +39,100 @@ class Application:
         self.master.columnconfigure(0, weight=1)
         self.master.rowconfigure(0, weight=1)
 
-        # for entryes
-
-        self.system_from = StringVar()
-        self.system_in = StringVar()
-        self.number_from = StringVar()
-        self.number_in = StringVar()
-        self.dots_count = StringVar()
 
         # texts entryes и comboboxes
 
-        ttk.Label(mainframe, text='Системы счисления', font='arial 14 bold').grid(column=0, row=0, columnspan=3,
+        ttk.Label(mainframe, text='Системы счисления', font='Helvetica 14 bold').grid(column=0, row=0, columnspan=3,
                                                                                   sticky=N, pady='0 10')
-        ttk.Label(mainframe, text='Введите число', font='arial 8').grid(column=0, row=1, sticky=W)
-        ttk.Label(mainframe, text='Система', font='arial 8').grid(column=1, row=1, sticky=E, padx='30 0')
-        self.systemCom_from = ttk.Combobox(mainframe, width=4, textvariable=self.system_from,
+        ttk.Label(mainframe, text='Введите число', font='Helvetica 8').grid(column=0, row=1, sticky=W)
+        ttk.Label(mainframe, text='Система', font='Helvetica 8').grid(column=1, row=1, sticky=W, padx='30 0')
+        self.systemCom_from = ttk.Combobox(mainframe, width=4, textvariable=StringVar(),
                                            values=(tuple((i for i in range(2, 17)))))
-        self.entry_from = ttk.Entry(mainframe, width=30, textvariable=self.number_from)
+        self.entry_from = ttk.Entry(mainframe, width=30, textvariable=StringVar())
         self.entry_from.grid(column=0, row=2, sticky=E, pady='5 20')
         self.entry_from.focus()
         self.systemCom_from.grid(column=1, row=2, sticky=E, pady='5 20', padx='30 0')
-        ttk.Label(mainframe, text='Получившееся число', font='arial 8').grid(column=0, row=3, sticky=W)
-        ttk.Label(mainframe, text='Система', font='arial 8').grid(column=1, row=3, sticky=E, padx='30 0')
-        self.entry_to = ttk.Entry(mainframe, width=30, textvariable=self.number_in)
+        ttk.Label(mainframe, text='Получившееся число', font='Helvetica 8').grid(column=0, row=3, sticky=W)
+        ttk.Label(mainframe, text='Система', font='Helvetica 8').grid(column=1, row=3, sticky=W, padx='30 0')
+        self.entry_to = ttk.Entry(mainframe, width=30, textvariable=StringVar())
         self.entry_to.grid(column=0, row=4, sticky=E, pady='5 20')
-        self.systemCom_to = ttk.Combobox(mainframe, width=4, textvariable=self.system_in,
+        self.systemCom_to = ttk.Combobox(mainframe, width=4, textvariable=StringVar(),
                                          values=(tuple((i for i in range(2, 17)))))
         self.systemCom_to.grid(column=1, row=4, sticky=E, pady='5 20', padx='30 0')
 
-        # number digitals after comma
 
-        ttk.Label(mainframe, text='Количество знаков после запятой', font='arial 8').grid(column=0, row=5, sticky=W)
-        self.result_dots = ttk.Combobox(mainframe, width=4, textvariable=self.dots_count,
+        # number digitals after comma
+        ttk.Label(mainframe, text='Количество знаков после запятой', font='Helvetica 8').grid(column=0, row=5, sticky=W)
+        self.result_dots = ttk.Combobox(mainframe, width=4, textvariable=StringVar(),
                                         values=(tuple((i for i in range(0, 30)))))
         self.result_dots.grid(column=1, row=5, sticky=E, padx='30 0')
-
-        # frame with buttons
+        # frame with buttons for numbersSystem
 
         resultframe = ttk.Frame(self.master, padding="30 0 30 20")
         resultframe.grid(column=0, row=1, sticky=(N, W, E, S))
         button = ttk.Button(resultframe, text='Перевести', padding='25 0', width=10, command=self.translate)
         button.grid(column=0, row=0, sticky=N, padx='0 20')
-        button = ttk.Button(resultframe, text='Стереть', padding='25 0', width=10, command=self.clear)
+        button = ttk.Button(resultframe, text='Стереть', padding='25 0', width=10, command= lambda: self.clear([self.entry_to, self.entry_from]))
         button.grid(column=1, row=0, sticky=N, padx='10 0')
-        #set default values
-        ttk.Label(resultframe, text='Результат:', font='arial 11 bold').grid(column=0, row=1, sticky=W, pady='15 0')
-        self.result = ttk.Label(resultframe, text='0', font='arial 14')
-        self.result.grid(column=1, row=1, sticky=W, columnspan=3, pady='13 0')
 
-        # set default
+        # set default values
 
-        self.systemCom_from.insert(0, "10")
-        self.systemCom_to.insert(0, "2")
-        self.result_dots.insert(0, '0')
+        self.systemCom_from.insert(0, 10)
+        self.systemCom_to.insert(0, 2)
+        self.result_dots.insert(0, 0)
 
-    def clear(self):
-        self.entry_to.delete(0, END)
-        self.entry_from.delete(0, END)
+        #frame with ariphmetic
+
+        additional = ttk.Frame(self.master, padding="30 20")
+        additional.grid(column=0, row=2, sticky=(N, W, E, S))
+        self.master.columnconfigure(0, weight=1)
+        self.master.rowconfigure(0, weight=1)
+
+        # texts entryes и comboboxes
+
+        ttk.Label(additional, text='Арифметические операции', font='Helvetica 12 bold').grid(column=0, row=0, columnspan=3,
+                                                                                  sticky=N, pady='0 10')
+        ttk.Label(additional, text='Введите первое число', font='Helvetica 8').grid(column=0, row=1, sticky=W)
+        ttk.Label(additional, text='Знак', font='Helvetica 8').grid(column=1, row=1, sticky=W, padx='30 0')
+        self.decimalCom = ttk.Combobox(additional, width=4, textvariable=StringVar(),
+                                           values=('+', '-', '×','÷'))
+        self.first_digit = ttk.Entry(additional, width=30, textvariable=StringVar())
+        self.first_digit.grid(column=0, row=2, sticky=E, pady='5 20')
+        self.decimalCom.grid(column=1, row=2, sticky=E, pady='5 20', padx='30 0')
+        ttk.Label(additional, text='Введите второе число', font='Helvetica 8').grid(column=0, row=3, sticky=W)
+        ttk.Label(additional, text='Система', font='Helvetica 8').grid(column=1, row=3, sticky=W, padx='30 0')
+        self.second_digit = ttk.Entry(additional, width=30, textvariable=StringVar())
+        self.second_digit.grid(column=0, row=4, sticky=E, pady='5 10')
+        self.systemCom = ttk.Combobox(additional, width=4, textvariable=StringVar(),
+                                         values=(tuple((i for i in range(2, 17)))))
+        self.systemCom.grid(column=1, row=4, sticky=E, pady='5 10', padx='30 0')
+
+        # frame with buttons for ariphmetic operations
+
+        resultframe2 = ttk.Frame(self.master, padding="30 0 30 20")
+        resultframe2.grid(column=0, row=4, sticky=(N, W, E, S))
+        button = ttk.Button(resultframe2, text='Перевести', padding='25 0', width=10, command=self.translate)
+        button.grid(column=0, row=0, sticky=N, columnspan=2, padx='0 20')
+        button = ttk.Button(resultframe2, text='Стереть', padding='25 0', width=10, command= lambda: self.clear([self.first_digit, self.second_digit, self.result]))
+        button.grid(column=2, row=0, sticky=N, padx='10 0')
+        ttk.Label(resultframe2, text='Результат: ', font='Helvetica 12').grid(column=0, row=3, sticky=W, pady='20 0')
+        self.result = ttk.Label(resultframe2, text='0', font='Helvetica 12')
+        self.result.grid(column=1, row=3, columnspan = 2 ,sticky=W, pady='20 0')
+        #default values for comboboxes
+        self.decimalCom.insert(0, "+")
+        self.systemCom.insert(0, 2)
+
+    def clear(self, list_with):
+        for i in list_with:
+
+            if type(i) is 'tkinter.ttk.Entry':
+                i.delete(0, END)
+            else:
+                i['text'] = '0'
+
+
+
+
 
     def ten_to_q(self, number, base):
         '''функция перевода из десятичной системы счисления
@@ -119,12 +156,12 @@ class Application:
         '''функция перевода чисел из одной системы счисления в другую.
         Данная функция будет обращаться за помощью к функциям
         ten_to_q а также к функции q_to_ten'''
-        number = int(self.number_from.get())
-        base = int(self.systemCom_from.get())
-        to_base = int(self.systemCom_to.get())
+        number = self.entry_from.get()
+        base = self.systemCom_from.get()
+        to_base = self.systemCom_to.get()
+        print(number,'-', base, '-',to_base)
         # fixme Ниже код для тестов, его нужно править
         # fixme но я думаю что if elif else тут будет уместно
-        print(type(base))
         # fixme определиться с целом либо дробным числом
         if base == 10:
             print(self.ten_to_q(number, base))
