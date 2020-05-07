@@ -78,13 +78,11 @@ class Application:
 
         resultframe = ttk.Frame(self.master, padding="30 0 30 20")
         resultframe.grid(column=0, row=1, sticky=(N, W, E, S))
-<<<<<<< HEAD
         button = ttk.Button(resultframe, text='Перевести', padding='25 0', width=10, command=self.translate)
         button.grid(column=0, row=0, sticky=N, padx='0 20')
         button = ttk.Button(resultframe, text='Стереть', padding='25 0', width=10, command=self.clear)
         button.grid(column=1, row=0, sticky=N, padx='10 0')
         #set default values
-=======
         button = ttk.Button(resultframe, text='Вычислить', width=18, command=self.translate)
         button.grid(column=0, columnspan=2, row=0, sticky=W, padx='0 20')
         button = ttk.Button(resultframe, text='Стереть', width=18, command=self.clear)
@@ -95,7 +93,6 @@ class Application:
 
         # set default
 
->>>>>>> be646ace806883f1a9dcbea26a8fe75f797ec39a
         self.systemCom_from.insert(0, "10")
         self.systemCom_to.insert(0, "2")
         self.result_dots.insert(0, '0')
