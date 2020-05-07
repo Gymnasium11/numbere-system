@@ -80,7 +80,6 @@ class Application:
 
         resultframe = ttk.Frame(self.master, padding="30 0 30 20")
         resultframe.grid(column=0, row=1, sticky=(N, W, E, S))
-        print(resultframe.winfo_geometry())
         button = ttk.Button(resultframe, text='Перевести', padding='25 0', width=10, command=self.translate)
         button.grid(column=0, row=0, sticky=N, padx='0 20')
         button = ttk.Button(resultframe, text='Стереть', padding='25 0', width=10, command=self.clear)
