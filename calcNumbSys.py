@@ -83,10 +83,6 @@ class Application:
         button = ttk.Button(resultframe, text='Стереть', padding='25 0', width=10, command=self.clear)
         button.grid(column=1, row=0, sticky=N, padx='10 0')
         #set default values
-        button = ttk.Button(resultframe, text='Вычислить', width=18, command=self.translate)
-        button.grid(column=0, columnspan=2, row=0, sticky=W, padx='0 20')
-        button = ttk.Button(resultframe, text='Стереть', width=18, command=self.clear)
-        button.grid(column=3, row=0, sticky=E, padx='10 0')
         ttk.Label(resultframe, text='Результат:', font='arial 11 bold').grid(column=0, row=1, sticky=W, pady='15 0')
         self.result = ttk.Label(resultframe, text='0', font='arial 14')
         self.result.grid(column=1, row=1, sticky=W, columnspan=3, pady='13 0')
