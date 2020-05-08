@@ -25,6 +25,7 @@ class Application:
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
         self.master.iconbitmap('calculator_icon.ico')
 
+
         # menu
 
         Main_menu = Menu(self.master)
@@ -138,6 +139,9 @@ class Application:
         self.master.maxsize(width=w, height=h)
         self.master.minsize(width=w, height=h)
 
+        #buttons on keyboard
+
+        self.master.bind('<Escape>', self.more_functions)
     #for clear entryes ans result label
 
     def clear(self, *list_with):
@@ -147,7 +151,7 @@ class Application:
                 self.result['text'] = '0'
             else:
                 i.delete(0, END)
-    def more_functions(self):
+    def more_functions(self, *args):
 
         self.master.update()
         if self.wind_status == 1:
