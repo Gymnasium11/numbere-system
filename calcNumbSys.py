@@ -28,15 +28,20 @@ class Application:
         Main_menu.add_cascade(label='File', menu=File_Menu)     
         Main_menu.add_cascade(label='About', command=show_about)
         Main_menu.add_cascade(label='Help')
+        View_Menu = Menu(Main_menu, tearoff=False)
+        View_Menu.add_command(label='Сhange View', command=self.more_functions)
+        Main_menu.add_cascade(label='View', menu = View_Menu)
         Main_menu.add_cascade(label='Exit', command=master.destroy)
         File_Menu.add_command(label='New')
         File_Menu.add_command(label='Save')
         File_Menu.add_separator()
         File_Menu.add_command(label='Exit', command=self.master.destroy)
         mainframe = ttk.Frame(self.master, padding="30 20")
-        mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
+        mainframe.grid(column=0, row=0, sticky=(S))
         self.master.columnconfigure(0, weight=1)
-        self.master.rowconfigure(0, weight=1)
+
+        self.master.rowconfigure(2, weight=20)
+        self.master.rowconfigure(4, weight=20)
 
         # texts entryes и comboboxes
 
@@ -67,7 +72,7 @@ class Application:
         # frame with buttons for numbersSystem
 
         resultframe = ttk.Frame(self.master, padding="30 0 30 20")
-        resultframe.grid(column=0, row=1, sticky=(N, W, E, S))
+        resultframe.grid(column=0, row=1, sticky=(N))
         button = ttk.Button(resultframe, text='Перевести', padding='25 0', width=10, command=self.translate)
         button.grid(column=0, row=0, sticky=N, padx='0 20')
         button = ttk.Button(resultframe, text='Стереть', padding='25 0', width=10, command= lambda: self.clear(self.entry_to, self.entry_from))
@@ -121,10 +126,10 @@ class Application:
         self.systemCom.insert(0, 2)
 
         #fixed window
-
+        self.wind_status = 1
         self.master.update()
         w = root.winfo_width()  # width of window
-        h = root.winfo_height() # height of window
+        h = root.winfo_height()//2 # height of window
         self.master.maxsize(width=w, height=h)
         self.master.minsize(width=w, height=h)
 
@@ -137,6 +142,21 @@ class Application:
                 self.result['text'] = '0'
             else:
                 i.delete(0, END)
+    def more_functions(self):
+
+        self.master.update()
+        if self.wind_status == 1:
+            w = root.winfo_width()  # width of window
+            h = root.winfo_height() * 2  # height of window
+            self.master.maxsize(width=w, height=h)
+            self.master.minsize(width=w, height=h)
+            self.wind_status = 0
+        else:
+            w = root.winfo_width()  # width of window
+            h = root.winfo_height() // 2  # height of window
+            self.master.maxsize(width=w, height=h)
+            self.master.minsize(width=w, height=h)
+            self.wind_status = 1
 
 
 
