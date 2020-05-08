@@ -143,10 +143,13 @@ class Application:
     def ten_to_q(self, number, base):
         '''функция перевода из десятичной системы счисления
         в любую другую систему счисления'''
-        # fixme ниже просто код для тестов ЕГО нужно поправить
-        result = hex(number)[2:]
-        return result
-
+        alphabet = "0123456789ABCDEF"
+        r=''
+        while number:
+            number,y = divmod(number, base) 
+            r=alphabet[y]+r
+        return r
+        self.entry_to.insert(0,r)
     def q_to_ten(self, number, base):
         '''функция перевода из любой системы счисления
         в десятичную систему счисления'''
@@ -188,4 +191,3 @@ if __name__ == "__main__":
     main()
 
 # version 0.1.1)
-#  комит просто ради тега))
