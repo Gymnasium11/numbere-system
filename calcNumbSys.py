@@ -118,7 +118,7 @@ class Application:
 
         resultframe2 = ttk.Frame(self.master, padding="30 0 30 20")
         resultframe2.grid(column=0, row=4, sticky=(N, W, E, S))
-        button = ttk.Button(resultframe2, text='Перевести', padding='25 0', width=10, command=self.ariphmetics_operations)
+        button = ttk.Button(resultframe2, text='Посчитать', padding='25 0', width=10, command=self.ariphmetics_operations)
         button.grid(column=0, row=0, sticky=N, columnspan=2, padx='0 20')
         button = ttk.Button(resultframe2, text='Стереть', padding='25 0', width=10, command= lambda: self.clear(self.first_digit, self.second_digit, self.result))
         button.grid(column=2, row=0, sticky=N, padx='10 0')
@@ -153,8 +153,10 @@ class Application:
                 self.result['text'] = '0'
             else:
                 i.delete(0, END)
-    def more_functions(self, *args):
 
+    #after this funсtion window's height decreases or increases
+
+    def more_functions(self, *args):
         self.master.update()
         if self.wind_status == 1:
             w = root.winfo_width()  # width of window
@@ -224,7 +226,11 @@ class Application:
         else:
             self.entry_to.insert(0,self.ten_to_q(self.q_to_ten(number, base), to_base))
 
+    #ariphmetics operations will processing when user press button посчитать
+
     def ariphmetics_operations(self):
+        '''функция арифметический операций в разных системах исчисления, данная
+        фуекция будет обращаться за помощью к функциям add, minus, dev, mult'''
         first_number = str(self.first_digit.get())
         second_number = str(self.second_digit.get())
         decimal = self.decimalCom.get()
@@ -240,12 +246,16 @@ class Application:
         self.result['text'] = result
         if self.result['text'] == '':
             self.result['text'] = '0'
+
     def add(self, first_digit, second_digit, base):
         return self.ten_to_q(self.q_to_ten(first_digit, base) + self.q_to_ten(second_digit, base), base)
+
     def minus(self, first_digit, second_digit, base):
         return self.ten_to_q(self.q_to_ten(first_digit, base) - self.q_to_ten(second_digit, base), base)
+
     def mult(self, first_digit, second_digit, base):
         return self.ten_to_q(self.q_to_ten(first_digit, base) * self.q_to_ten(second_digit, base), base)
+
     def dev(self, first_digit, second_digit, base):
         return self.ten_to_q(self.q_to_ten(first_digit, base) / self.q_to_ten(second_digit, base), base)
 
