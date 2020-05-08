@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import tkinter.ttk as ttk
+import ctypes
 import About
 
 
@@ -16,9 +17,13 @@ class Application:
 
         # window
 
+
+
         self.master.title("Системы счисления")
 
-        self.master.iconbitmap(r'calculator_icon.ico')
+        myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+        self.master.iconbitmap('calculator_icon.ico')
 
         # menu
 
