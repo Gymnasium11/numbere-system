@@ -150,13 +150,21 @@ class Application:
             r=alphabet[y]+r
         return r
         self.entry_to.insert(0,r)
+        #fixme в "q_to_ten" number должно приниматься строчкой
+        #fixme либо это как-то исправить в самой функции, либо там сверху)
     def q_to_ten(self, number, base):
         '''функция перевода из любой системы счисления
         в десятичную систему счисления'''
-        # fixme ниже просто код для тестов ЕГО нужно поправить
-        result = number
-        return result
-
+        num_str = number[::-1]
+        num = 0
+        for k in range(len(num_str)):
+            dig = num_str[k]
+            if dig.isdigit():
+                dig = int(dig)
+            else: 
+                dig = ord(dig.upper())-ord('A')+10
+                num += dig*(base**k)
+        return num
     def fract_ten_to_q(self, number, base, comma):
         # fixme
         pass
