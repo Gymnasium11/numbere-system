@@ -17,14 +17,11 @@ class Application:
 
         # window
 
-
-
         self.master.title("Системы счисления")
 
         myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
         self.master.iconbitmap('calculator_icon.ico')
-
 
         # menu
 
@@ -45,7 +42,6 @@ class Application:
         mainframe = ttk.Frame(self.master, padding="30 20")
         mainframe.grid(column=0, row=0, sticky=(S))
         self.master.columnconfigure(0, weight=1)
-
         self.master.rowconfigure(2, weight=100)
         self.master.rowconfigure(4, weight=100)
 
@@ -71,10 +67,12 @@ class Application:
 
 
         # number digitals after comma
+
         ttk.Label(mainframe, text='Количество знаков после запятой', font='Helvetica 8').grid(column=0, row=5, sticky=W)
         self.result_dots = ttk.Combobox(mainframe, width=4, textvariable=StringVar(),
                                         values=(tuple((i for i in range(0, 30)))))
         self.result_dots.grid(column=1, row=5, sticky=E, padx='30 0')
+
         # frame with buttons for numbersSystem
 
         resultframe = ttk.Frame(self.master, padding="30 0 30 20")
@@ -127,11 +125,14 @@ class Application:
         ttk.Label(resultframe2, text='Результат: ', font='Helvetica 12').grid(column=0, row=3, sticky=W, pady='20 0')
         self.result = ttk.Label(resultframe2, text='0', font='Helvetica 12')
         self.result.grid(column=1, row=3, columnspan = 2 ,sticky=W, pady='20 0')
+
         #default values for comboboxes
+
         self.decimalCom.insert(0, "+")
         self.systemCom.insert(0, 2)
 
         #fixed window
+
         self.wind_status = 1
         self.master.update()
         w = root.winfo_width()  # width of window
@@ -142,6 +143,7 @@ class Application:
         #buttons on keyboard
 
         self.master.bind('<Escape>', self.more_functions)
+
     #for clear entryes ans result label
 
     def clear(self, *list_with):
