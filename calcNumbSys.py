@@ -46,8 +46,8 @@ class Application:
         mainframe.grid(column=0, row=0, sticky=(S))
         self.master.columnconfigure(0, weight=1)
 
-        self.master.rowconfigure(2, weight=20)
-        self.master.rowconfigure(4, weight=20)
+        self.master.rowconfigure(2, weight=100)
+        self.master.rowconfigure(4, weight=100)
 
         # texts entryes и comboboxes
 
@@ -135,7 +135,7 @@ class Application:
         self.wind_status = 1
         self.master.update()
         w = root.winfo_width()  # width of window
-        h = root.winfo_height()//2 # height of window
+        h = int(root.winfo_height() / 1.9) # height of window
         self.master.maxsize(width=w, height=h)
         self.master.minsize(width=w, height=h)
 
@@ -156,13 +156,13 @@ class Application:
         self.master.update()
         if self.wind_status == 1:
             w = root.winfo_width()  # width of window
-            h = root.winfo_height() * 2  # height of window
+            h = int(root.winfo_height() * 1.9)  # height of window
             self.master.maxsize(width=w, height=h)
             self.master.minsize(width=w, height=h)
             self.wind_status = 0
         else:
             w = root.winfo_width()  # width of window
-            h = root.winfo_height() // 2  # height of window
+            h = int(root.winfo_height() / 1.9)  # height of window
             self.master.maxsize(width=w, height=h)
             self.master.minsize(width=w, height=h)
             self.wind_status = 1
