@@ -118,7 +118,7 @@ class Application:
 
         resultframe2 = ttk.Frame(self.master, padding="30 0 30 20")
         resultframe2.grid(column=0, row=4, sticky=(N, W, E, S))
-        button = ttk.Button(resultframe2, text='Перевести', padding='25 0', width=10, command=self.translate)
+        button = ttk.Button(resultframe2, text='Перевести', padding='25 0', width=10, command=self.ariphmetics_operations)
         button.grid(column=0, row=0, sticky=N, columnspan=2, padx='0 20')
         button = ttk.Button(resultframe2, text='Стереть', padding='25 0', width=10, command= lambda: self.clear(self.first_digit, self.second_digit, self.result))
         button.grid(column=2, row=0, sticky=N, padx='10 0')
@@ -223,6 +223,32 @@ class Application:
             self.entry_to.insert(0,self.q_to_ten(number, base))
         else:
             self.entry_to.insert(0,self.ten_to_q(self.q_to_ten(number, base), to_base))
+
+    def ariphmetics_operations(self):
+        first_number = str(self.first_digit.get())
+        second_number = str(self.second_digit.get())
+        decimal = self.decimalCom.get()
+        base = int(self.systemCom.get())
+        if decimal == '+':
+            result = self.add(first_number, second_number, base)
+        elif decimal == '-':
+            result = self.minus(first_number, second_number, base)
+        elif decimal == '/' or decimal == '÷':
+            result = self.dev(first_number, second_number, base)
+        elif decimal == '*' or decimal == '×':
+            result = self.mult(first_number, second_number, base)
+        self.result['text'] = result
+        if self.result['text'] == '':
+            self.result['text'] = '0'
+    def add(self, first_digit, second_digit, base):
+        return self.ten_to_q(self.q_to_ten(first_digit, base) + self.q_to_ten(second_digit, base), base)
+    def minus(self, first_digit, second_digit, base):
+        return self.ten_to_q(self.q_to_ten(first_digit, base) - self.q_to_ten(second_digit, base), base)
+    def mult(self, first_digit, second_digit, base):
+        return self.ten_to_q(self.q_to_ten(first_digit, base) * self.q_to_ten(second_digit, base), base)
+    def dev(self, first_digit, second_digit, base):
+        return self.ten_to_q(self.q_to_ten(first_digit, base) / self.q_to_ten(second_digit, base), base)
+
 
 
 def main():
