@@ -11,6 +11,7 @@ def show_about():
       window = About(root)
       root.mainloop()
 
+
 class Application:
     def __init__(self, master):
         self.master = master
@@ -19,8 +20,8 @@ class Application:
 
         self.master.title("Системы счисления")
 
-        myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
-        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+        # myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
+        # ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
         self.master.iconbitmap('calculator_icon.ico')
 
         # menu
@@ -64,7 +65,6 @@ class Application:
         self.systemCom_to = ttk.Combobox(mainframe, width=4, textvariable=StringVar(),
                                          values=(tuple((i for i in range(2, 17)))))
         self.systemCom_to.grid(column=1, row=4, sticky=E, pady='5 20', padx='30 0')
-
 
         # number digitals after comma
 
@@ -171,22 +171,15 @@ class Application:
             self.master.minsize(width=w, height=h)
             self.wind_status = 1
 
-
-
-
-
-
-
-
     def ten_to_q(self, number, base):
         '''функция перевода из десятичной системы счисления
         в любую другую систему счисления'''
         alphabet = "0123456789ABCDEF"
-        r=''
+        r = ''
         number = int(number)
         while number:
-            number,y = divmod(number, base)
-            r=alphabet[y]+r
+            number, y = divmod(number, base)
+            r = alphabet[y]+r
         return r
 
     def q_to_ten(self, number, base):
@@ -203,6 +196,7 @@ class Application:
                 dig = ord(dig.upper())-ord('A')+10
             num += dig*(base**k)
         return num
+
     def fract_ten_to_q(self, number, base, comma):
         # fixme
         pass
@@ -260,14 +254,12 @@ class Application:
         return self.ten_to_q(self.q_to_ten(first_digit, base) / self.q_to_ten(second_digit, base), base)
 
 
-
 def main():
     global root
     root = Tk()
     window = Application(root)
     root.mainloop()
 
+
 if __name__ == "__main__":
     main()
-
-# version 0.1.1)
