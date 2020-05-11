@@ -6,10 +6,10 @@ import About
 
 
 def show_about():
-      global root
-      root = Tk()
-      window = About(root)
-      root.mainloop()
+    root = Tk()
+    root.setGeometry()
+    root.mainloop()
+    
 
 class Application:
     def __init__(self, master):
@@ -170,14 +170,7 @@ class Application:
             self.master.maxsize(width=w, height=h)
             self.master.minsize(width=w, height=h)
             self.wind_status = 1
-
-
-
-
-
-
-
-
+            
     def ten_to_q(self, number, base):
         '''функция перевода из десятичной системы счисления
         в любую другую систему счисления'''
