@@ -215,11 +215,10 @@ class Application:
         else:
             return str(num)
 
-    def fract_ten_to_q(self, number, base, comma):
+    def fract_ten_to_q(self, number, base, comma=10):
         alphabet = "0123456789ABCDEF"
         alphabet = {str(i) : alphabet[i] for i in range(len(alphabet))}
         number = float('0.'+number)
-        print(number, base, comma)
         result = ''
         while number != 0 and len(result)<int(comma)+20:
             number *= int(base)
@@ -231,7 +230,7 @@ class Application:
         print('result', result)
         return result
 
-    def fract_q_to_ten(self, number, base, comma):
+    def fract_q_to_ten(self, number, base, comma=10):
         alphabet = "0123456789ABCDEF"
         number = [int(alphabet.index(i.upper())) for i in list(number)]
         result = 0
@@ -283,16 +282,16 @@ class Application:
             self.result['text'] = '0'
 
     def add(self, first_digit, second_digit, base):
-        return self.ten_to_q(self.q_to_ten(first_digit, base) + self.q_to_ten(second_digit, base), base)
+        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) + float(self.q_to_ten(second_digit, base))), base)
 
     def minus(self, first_digit, second_digit, base):
-        return self.ten_to_q(self.q_to_ten(first_digit, base) - self.q_to_ten(second_digit, base), base)
+        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) - float(self.q_to_ten(second_digit, base))), base)
 
     def mult(self, first_digit, second_digit, base):
-        return self.ten_to_q(self.q_to_ten(first_digit, base) * self.q_to_ten(second_digit, base), base)
+        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) * float(self.q_to_ten(second_digit, base))), base)
 
     def dev(self, first_digit, second_digit, base):
-        return self.ten_to_q(self.q_to_ten(first_digit, base) / self.q_to_ten(second_digit, base), base)
+        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) / float(self.q_to_ten(second_digit, base))), base)
 
 
 def main():
