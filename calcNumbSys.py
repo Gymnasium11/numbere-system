@@ -34,16 +34,16 @@ class About(Frame):
 
         # img 
         # fixme  здесь нужно рахобраться с картинкой
-        #img = PhotoImage(file=r'.\star.png')
-        #ttk.Label(mainframe, image=img).grid(row=1, column=0)
+        # img = PhotoImage(file=r'./star.png')
+        # ttk.Label(mainframe, image=img).grid(row=1, column=0)
 
         # contact
 
         ttk.Label(mainframe, text='Разработчики', font='Helvetica 14').grid(column = 0, row = 2)
-        ttk.Label(mainframe, text='Мангазеев Алесандр Юрьевич: Почта', font='Helvetica 10').grid(column=0, row=3)
-        ttk.Label(mainframe, text='Лищенко Тимофей Викторович: timmmofey@itachi-uchiha.ru', font='Helvetica 10').grid(column=0, row=4)
-        ttk.Label(mainframe, text='Яковлев Павел Андреевич: Почта', font='Helvetica 10').grid(column=0, row=5)
-        ttk.Label(mainframe, text='Шелехов Никита Дмитриевич: Почта', font='Helvetica 10').grid(column=0, row=6)
+        ttk.Label(mainframe, text='Мангазеев Алесандр: alex3287@bk.ru', font='Helvetica 10').grid(column=0, row=3)
+        ttk.Label(mainframe, text='Лищенко Тимофей: timmmofey@itachi-uchiha.ru', font='Helvetica 10').grid(column=0, row=4)
+        ttk.Label(mainframe, text='Яковлев Павел: Почта', font='Helvetica 10').grid(column=0, row=5)
+        ttk.Label(mainframe, text='Шелехов Никита: Почта', font='Helvetica 10').grid(column=0, row=6)
         
         #  version 
 
@@ -65,8 +65,8 @@ class Application:
 
         self.master.title("Системы счисления")
 
-        myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
-        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+        # myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
+        # ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
         self.master.iconbitmap('calculator_icon.ico')
 
         # menu
@@ -85,6 +85,9 @@ class Application:
         File_Menu.add_command(label='Save')
         File_Menu.add_separator()
         File_Menu.add_command(label='Exit', command=self.master.destroy)
+        Help_Menu = Menu(Main_menu, tearoff=False)
+        Main_menu.add_cascade(label='Help', menu = Help_Menu)
+        Help_Menu.add_command(label='About', command=show_about)
         mainframe = ttk.Frame(self.master, padding="30 20")
         mainframe.grid(column=0, row=0, sticky=(S))
         self.master.columnconfigure(0, weight=1)
