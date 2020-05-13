@@ -179,6 +179,12 @@ class Application:
         self.decimalCom.insert(0, "+")
         self.systemCom.insert(0, 2)
 
+        # default values for Entry
+        self.entry_from.insert(0, 0)
+        self.entry_to.insert(0, 0)
+        self.first_digit.insert(0, 0)
+        self.second_digit.insert(0, 0)
+
         #fixed window
 
         self.wind_status = 1
@@ -289,8 +295,8 @@ class Application:
         result = str(round(float(result), int(comma)))
         result = str(result)[2:]
         result += (int(comma) - len(result)) * '0'
-
         return result
+
     def translate(self, *args):
         '''функция перевода чисел из одной системы счисления в другую.
         Данная функция будет обращаться за помощью к функциям
@@ -299,9 +305,6 @@ class Application:
         base = int(self.systemCom_from.get())
         to_base = int(self.systemCom_to.get())
         print(number,'-', base, '-',to_base)
-        # fixme Ниже код для тестов, его нужно править
-        # fixme но я думаю что if elif else тут будет уместно
-        # fixme определиться с целом либо дробным числом
         self.entry_to.delete(0, END)
         if base == 10:
             self.entry_to.insert(0, self.ten_to_q(number, to_base))
