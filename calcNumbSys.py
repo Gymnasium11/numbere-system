@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import tkinter.ttk as ttk
+import re
 import ctypes
 import webbrowser
 
@@ -57,6 +58,7 @@ def show_about():
     root.mainloop()
     
 
+
 class Application:
     def __init__(self, master):
         self.master = master
@@ -65,8 +67,10 @@ class Application:
 
         self.master.title("Системы счисления")
 
-        # myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
-        # ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+        #fixme who comented this from below?
+
+        #myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
+        #ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
         self.master.iconbitmap('calculator_icon.ico')
 
         # menu
@@ -79,8 +83,7 @@ class Application:
         View_Menu.add_command(label='Сhange View', command=self.more_functions)
         Main_menu.add_cascade(label='View', menu = View_Menu)
         Main_menu.add_cascade(label='Exit', command=master.destroy)
-        File_Menu.add_command(label='New')
-        File_Menu.add_command(label='Save')
+
         File_Menu.add_separator()
         File_Menu.add_command(label='Exit', command=self.master.destroy)
         Help_Menu = Menu(Main_menu, tearoff=False)
@@ -111,7 +114,6 @@ class Application:
         self.systemCom_to = ttk.Combobox(mainframe, width=4, textvariable=StringVar(),
                                          values=(tuple((i for i in range(2, 17)))))
         self.systemCom_to.grid(column=1, row=4, sticky=E, pady='5 20', padx='30 0')
-
 
         # number digitals after comma
 
@@ -178,6 +180,12 @@ class Application:
         self.decimalCom.insert(0, "+")
         self.systemCom.insert(0, 2)
 
+        # default values for Entry
+        self.entry_from.insert(0, 0)
+        self.entry_to.insert(0, 0)
+        self.first_digit.insert(0, 0)
+        self.second_digit.insert(0, 0)
+
         #fixed window
 
         self.wind_status = 1
@@ -221,19 +229,30 @@ class Application:
     def ten_to_q(self, number, base):
         '''функция перевода из десятичной системы счисления
         в любую другую систему счисления'''
+        exp = re.split('\.|,', number)
+        print(exp)
+        number_int = exp[0]
         alphabet = "0123456789ABCDEF"
-        r=''
-        number = int(number)
-        while number:
-            number,y = divmod(number, base)
-            r=alphabet[y]+r
-        return r
+        r = ''
+        number_int = int(number_int)
+        while number_int:
+            number_int, y = divmod(number_int, base)
+            r = alphabet[y]+r
+        if len(exp) == 0:
+            return '0'
+        if len(exp) > 1 and int(self.result_dots.get()) > 0:
+            return r +re.findall('\.|,' , number)[0] +self.fract_ten_to_q(exp[-1], base, self.result_dots.get())
+        else:
+            return r
 
     def q_to_ten(self, number, base):
         '''функция перевода из любой системы счисления
         в десятичную систему счисления'''
         print(number, base)
-        num_str = number[::-1]
+        exp = re.split('\.|,', number)
+        print(exp)
+        number_int = exp[0]
+        num_str = number_int[::-1]
         num = 0
         for k in range(len(num_str)):
             dig = num_str[k]
@@ -242,10 +261,38 @@ class Application:
             else:
                 dig = ord(dig.upper())-ord('A')+10
             num += dig*(base**k)
-        return num
-    def fract_ten_to_q(self, number, base, comma):
-        # fixme
-        pass
+        if len(exp) == 0:
+            return '0'
+        elif len(exp) > 1 and int(self.result_dots.get()) > 0:
+            return str(num) + re.findall('\.|,' , str(number))[0] + self.fract_q_to_ten(exp[-1], base, self.result_dots.get())
+        else:
+            return str(num)
+
+    def fract_ten_to_q(self, number, base, comma=10):
+        alphabet = "0123456789ABCDEF"
+        alphabet = {str(i) : alphabet[i] for i in range(len(alphabet))}
+        number = float('0.'+number)
+        result = ''
+        while number != 0 and len(result)<int(comma)+20:
+            number *= int(base)
+            exp = re.split('\.', str(number))
+            result += alphabet[exp[0]]
+            number = float('0.'+exp[-1])
+        result = result + '0'*(int(comma) - len(result))
+        result = result[:int(comma)]
+        print('result', result)
+        return result
+
+    def fract_q_to_ten(self, number, base, comma=10):
+        alphabet = "0123456789ABCDEF"
+        number = [int(alphabet.index(i.upper())) for i in list(number)]
+        result = 0
+        for i in range(0, len(number)):
+            result += number[i] * int(base) ** ((i+1) // -1)
+        result = str(round(float(result), int(comma)))
+        result = str(result)[2:]
+        result += (int(comma) - len(result)) * '0'
+        return result
 
     def translate(self, *args):
         '''функция перевода чисел из одной системы счисления в другую.
@@ -255,9 +302,6 @@ class Application:
         base = int(self.systemCom_from.get())
         to_base = int(self.systemCom_to.get())
         print(number,'-', base, '-',to_base)
-        # fixme Ниже код для тестов, его нужно править
-        # fixme но я думаю что if elif else тут будет уместно
-        # fixme определиться с целом либо дробным числом
         self.entry_to.delete(0, END)
         if base == 10:
             self.entry_to.insert(0, self.ten_to_q(number, to_base))
@@ -288,17 +332,16 @@ class Application:
             self.result['text'] = '0'
 
     def add(self, first_digit, second_digit, base):
-        return self.ten_to_q(self.q_to_ten(first_digit, base) + self.q_to_ten(second_digit, base), base)
+        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) + float(self.q_to_ten(second_digit, base))), base)
 
     def minus(self, first_digit, second_digit, base):
-        return self.ten_to_q(self.q_to_ten(first_digit, base) - self.q_to_ten(second_digit, base), base)
+        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) - float(self.q_to_ten(second_digit, base))), base)
 
     def mult(self, first_digit, second_digit, base):
-        return self.ten_to_q(self.q_to_ten(first_digit, base) * self.q_to_ten(second_digit, base), base)
+        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) * float(self.q_to_ten(second_digit, base))), base)
 
     def dev(self, first_digit, second_digit, base):
-        return self.ten_to_q(self.q_to_ten(first_digit, base) / self.q_to_ten(second_digit, base), base)
-
+        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) / float(self.q_to_ten(second_digit, base))), base)
 
 
 def main():
@@ -307,7 +350,5 @@ def main():
     window = Application(root)
     root.mainloop()
 
-if __name__ == "__main__":
-    main()
 
 # version 0.1.1)
