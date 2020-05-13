@@ -2,12 +2,58 @@ from tkinter import *
 from tkinter import messagebox
 import tkinter.ttk as ttk
 import ctypes
-import About
+import webbrowser
+
+
+class About(Frame):
+
+    def __init__(self, master):
+
+        self.master = master
+
+        # name
+
+        self.master.title("About")
+
+        # window width height
+
+        master.geometry("450x200")
+
+        # fixed window
+
+        master.resizable(width=False, height=False)
+
+        # Frame
+
+        mainframe = ttk.Frame(self.master, padding="50 10 50 10")
+        mainframe.grid(column=0, row=0, sticky=(S))
+
+        # window text
+
+        ttk.Label(mainframe, text='О нас', font='Helvetica 20 bold').grid(column=0, row=0, columnspan=3, sticky=N)
+
+        # img 
+
+        #img = PhotoImage(file=r'.\star.png')
+        #ttk.Label(mainframe, image=img).grid(row=1, column=0)
+
+        # contact
+
+        ttk.Label(mainframe, text='Разработчики', font='Helvetica 14').grid(column = 0, row = 2)
+        ttk.Label(mainframe, text='Мангазеев Алесандр Юрьевич: Почта', font='Helvetica 10').grid(column=0, row=3)
+        ttk.Label(mainframe, text='Лищенко Тимофей Викторович: timmmofey@itachi-uchiha.ru', font='Helvetica 10').grid(column=0, row=4)
+        ttk.Label(mainframe, text='Яковлев Павел Андреевич: Почта', font='Helvetica 10').grid(column=0, row=5)
+        ttk.Label(mainframe, text='Шелехов Никита Дмитриевич: Почта', font='Helvetica 10').grid(column=0, row=6)
+        
+        #  version 
+
+        ttk.Label(mainframe, text='version 1.0.0', font='Helvetica 7').grid(column=0, row=10, sticky=S)
+
 
 
 def show_about():
     root = Tk()
-    root.setGeometry()
+    window = About(root)
     root.mainloop()
     
 
