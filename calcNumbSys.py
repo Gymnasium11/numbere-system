@@ -19,7 +19,7 @@ class About(Frame):
 
         # window width height
 
-        master.geometry("450x200")
+        master.geometry("415x200") # 450 200
 
         # fixed window
 
@@ -27,8 +27,8 @@ class About(Frame):
 
         # Frame
 
-        mainframe = ttk.Frame(self.master, padding="50 10 50 10")
-        mainframe.grid(column=0, row=0, sticky=(S))
+        mainframe = ttk.Frame(self.master, padding="20 10")
+        mainframe.grid(column=0, row=0)
 
         # window text
 
@@ -36,15 +36,15 @@ class About(Frame):
 
         # img 
         # fixme  здесь нужно рахобраться с картинкой
-        #img = PhotoImage(file=r'.\star.png')
-        #ttk.Label(mainframe, image=img).grid(row=1, column=0)
+        #img = PhotoImage(file="star.png")
+        #Label(mainframe, image=img).grid(row=3, column=1)
 
         # contact
 
         ttk.Label(mainframe, text='Разработчики', font='Helvetica 14').grid(column = 0, row = 2)
         ttk.Label(mainframe, text='Мангазеев Алесандр Юрьевич: Почта', font='Helvetica 10').grid(column=0, row=3)
         ttk.Label(mainframe, text='Лищенко Тимофей Викторович: timmmofey@itachi-uchiha.ru', font='Helvetica 10').grid(column=0, row=4)
-        ttk.Label(mainframe, text='Яковлев Павел Андреевич: Почта: pavlik.yakovlev.2004@gmail.com', font='Helvetica 10').grid(column=0, row=5)
+        ttk.Label(mainframe, text='Яковлев Павел Андреевич: pavlik.yakovlev.2004@gmail.com', font='Helvetica 10').grid(column=0, row=5)
         ttk.Label(mainframe, text='Шелехов Никита Дмитриевич: Почта', font='Helvetica 10').grid(column=0, row=6)
         
         #  version 
@@ -344,6 +344,7 @@ class Application:
         return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) / float(self.q_to_ten(second_digit, base))), base)
 
 
+
 def main():
     global root
     root = Tk()
@@ -351,7 +352,10 @@ def main():
     root.mainloop()
 
 
+
 if __name__ == "__main__":
     main()
-# version 0.1.1)
 
+
+
+# version 0.1.1
