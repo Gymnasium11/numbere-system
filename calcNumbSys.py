@@ -33,7 +33,7 @@ class About(Frame):
         ttk.Label(mainframe, text='О нас', font='Helvetica 20 bold').grid(column=0, row=0, columnspan=3, sticky=N)
 
         # img 
-
+        # fixme  здесь нужно рахобраться с картинкой
         #img = PhotoImage(file=r'.\star.png')
         #ttk.Label(mainframe, image=img).grid(row=1, column=0)
 
