@@ -224,11 +224,7 @@ class Application:
             self.master.maxsize(width=w, height=h)
             self.master.minsize(width=w, height=h)
             self.wind_status = 1
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> dev
     def ten_to_q(self, number, base):
         '''функция перевода из десятичной системы счисления
         в любую другую систему счисления'''
@@ -354,9 +350,7 @@ def main():
     root.mainloop()
 
 
-<<<<<<< HEAD
 if __name__ == "__main__":
     main()
-=======
 # version 0.1.1)
->>>>>>> dev
+
