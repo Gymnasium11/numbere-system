@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import tkinter.ttk as ttk
 import re
+import os
 import ctypes
 import webbrowser
 
@@ -62,15 +63,14 @@ def show_about():
 class Application:
     def __init__(self, master):
         self.master = master
-
         # window
 
         self.master.title("Системы счисления")
 
         #fixme who comented this from below?
-
-        #myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
-        #ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+        if os.name == 'nt':
+            myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
         self.master.iconbitmap('calculator_icon.ico')
 
         # menu
