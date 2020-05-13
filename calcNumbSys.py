@@ -44,7 +44,7 @@ class About(Frame):
         ttk.Label(mainframe, text='Разработчики', font='Helvetica 14').grid(column = 0, row = 2)
         ttk.Label(mainframe, text='Мангазеев Алесандр Юрьевич: Почта', font='Helvetica 10').grid(column=0, row=3)
         ttk.Label(mainframe, text='Лищенко Тимофей Викторович: timmmofey@itachi-uchiha.ru', font='Helvetica 10').grid(column=0, row=4)
-        ttk.Label(mainframe, text='Яковлев Павел Андреевич: Почта', font='Helvetica 10').grid(column=0, row=5)
+        ttk.Label(mainframe, text='Яковлев Павел Андреевич: Почта: pavlik.yakovlev.2004@gmail.com', font='Helvetica 10').grid(column=0, row=5)
         ttk.Label(mainframe, text='Шелехов Никита Дмитриевич: Почта', font='Helvetica 10').grid(column=0, row=6)
         
         #  version 
@@ -63,11 +63,10 @@ def show_about():
 class Application:
     def __init__(self, master):
         self.master = master
+
         # window
 
         self.master.title("Системы счисления")
-
-        #fixme who comented this from below?
         if os.name == 'nt':
             myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
             ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
