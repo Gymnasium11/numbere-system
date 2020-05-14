@@ -36,28 +36,22 @@ class About(Frame):
 
         # img 
         # fixme  здесь нужно рахобраться с картинкой
-<<<<<<< HEAD
         #img = PhotoImage(file="star.png")
         #Label(mainframe, image=img).grid(row=3, column=1)
-=======
         # img = PhotoImage(file=r'./star.png')
         # ttk.Label(mainframe, image=img).grid(row=1, column=0)
->>>>>>> dev
 
         # contact
 
         ttk.Label(mainframe, text='Разработчики', font='Helvetica 14').grid(column = 0, row = 2)
-<<<<<<< HEAD
         ttk.Label(mainframe, text='Мангазеев Алесандр Юрьевич: Почта', font='Helvetica 10').grid(column=0, row=3)
         ttk.Label(mainframe, text='Лищенко Тимофей Викторович: timmmofey@itachi-uchiha.ru', font='Helvetica 10').grid(column=0, row=4)
         ttk.Label(mainframe, text='Яковлев Павел Андреевич: pavlik.yakovlev.2004@gmail.com', font='Helvetica 10').grid(column=0, row=5)
         ttk.Label(mainframe, text='Шелехов Никита Дмитриевич: Почта', font='Helvetica 10').grid(column=0, row=6)
-=======
         ttk.Label(mainframe, text='Мангазеев Алесандр: alex3287@bk.ru', font='Helvetica 10').grid(column=0, row=3)
         ttk.Label(mainframe, text='Лищенко Тимофей: timmmofey@itachi-uchiha.ru', font='Helvetica 10').grid(column=0, row=4)
         ttk.Label(mainframe, text='Яковлев Павел: Почта', font='Helvetica 10').grid(column=0, row=5)
         ttk.Label(mainframe, text='Шелехов Никита: Почта', font='Helvetica 10').grid(column=0, row=6)
->>>>>>> dev
         
         #  version 
 
@@ -99,11 +93,8 @@ class Application:
         File_Menu.add_separator()
         File_Menu.add_command(label='Exit', command=self.master.destroy)
         Help_Menu = Menu(Main_menu, tearoff=False)
-<<<<<<< HEAD
         Main_menu.add_cascade(label='Help', menu=Help_Menu)
-=======
         Main_menu.add_cascade(label='Help', menu = Help_Menu)
->>>>>>> dev
         Help_Menu.add_command(label='About', command=show_about)
         mainframe = ttk.Frame(self.master, padding="30 20")
         mainframe.grid(column=0, row=0, sticky=(S))
@@ -241,11 +232,7 @@ class Application:
             self.master.maxsize(width=w, height=h)
             self.master.minsize(width=w, height=h)
             self.wind_status = 1
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> dev
     def ten_to_q(self, number, base):
         '''функция перевода из десятичной системы счисления
         в любую другую систему счисления'''
@@ -372,14 +359,10 @@ def main():
     root.mainloop()
 
 
-<<<<<<< HEAD
-
 if __name__ == "__main__":
     main()
 
 
 
 # version 0.1.1
-=======
 # version 0.1.1)
->>>>>>> dev
