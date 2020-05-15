@@ -10,7 +10,6 @@ import webbrowser
 class About(Frame):
 
     def __init__(self, master):
-
         self.master = master
 
         # name
@@ -19,7 +18,7 @@ class About(Frame):
 
         # window width height
 
-        master.geometry("415x200") # 450 200
+        master.geometry("415x200")  # 450 200
 
         # fixed window
 
@@ -36,34 +35,35 @@ class About(Frame):
 
         # img 
         # fixme  здесь нужно рахобраться с картинкой
-        #img = PhotoImage(file="star.png")
-        #Label(mainframe, image=img).grid(row=3, column=1)
+        # img = PhotoImage(file="star.png")
+        # Label(mainframe, image=img).grid(row=3, column=1)
         # img = PhotoImage(file=r'./star.png')
         # ttk.Label(mainframe, image=img).grid(row=1, column=0)
 
         # contact
 
-        ttk.Label(mainframe, text='Разработчики', font='Helvetica 14').grid(column = 0, row = 2)
+        ttk.Label(mainframe, text='Разработчики', font='Helvetica 14').grid(column=0, row=2)
         ttk.Label(mainframe, text='Мангазеев Алесандр Юрьевич: Почта', font='Helvetica 10').grid(column=0, row=3)
-        ttk.Label(mainframe, text='Лищенко Тимофей Викторович: timmmofey@itachi-uchiha.ru', font='Helvetica 10').grid(column=0, row=4)
-        ttk.Label(mainframe, text='Яковлев Павел Андреевич: pavlik.yakovlev.2004@gmail.com', font='Helvetica 10').grid(column=0, row=5)
+        ttk.Label(mainframe, text='Лищенко Тимофей Викторович: timmmofey@itachi-uchiha.ru', font='Helvetica 10').grid(
+            column=0, row=4)
+        ttk.Label(mainframe, text='Яковлев Павел Андреевич: pavlik.yakovlev.2004@gmail.com', font='Helvetica 10').grid(
+            column=0, row=5)
         ttk.Label(mainframe, text='Шелехов Никита Дмитриевич: Почта', font='Helvetica 10').grid(column=0, row=6)
         ttk.Label(mainframe, text='Мангазеев Алесандр: alex3287@bk.ru', font='Helvetica 10').grid(column=0, row=3)
-        ttk.Label(mainframe, text='Лищенко Тимофей: timmmofey@itachi-uchiha.ru', font='Helvetica 10').grid(column=0, row=4)
+        ttk.Label(mainframe, text='Лищенко Тимофей: timmmofey@itachi-uchiha.ru', font='Helvetica 10').grid(column=0,
+                                                                                                           row=4)
         ttk.Label(mainframe, text='Яковлев Павел: Почта', font='Helvetica 10').grid(column=0, row=5)
         ttk.Label(mainframe, text='Шелехов Никита: Почта', font='Helvetica 10').grid(column=0, row=6)
-        
+
         #  version 
 
         ttk.Label(mainframe, text='version 1.0.0', font='Helvetica 7').grid(column=0, row=10, sticky=S)
-
 
 
 def show_about():
     root = Tk()
     window = About(root)
     root.mainloop()
-    
 
 
 class Application:
@@ -94,7 +94,7 @@ class Application:
         File_Menu.add_command(label='Exit', command=self.master.destroy)
         Help_Menu = Menu(Main_menu, tearoff=False)
         Main_menu.add_cascade(label='Help', menu=Help_Menu)
-        Main_menu.add_cascade(label='Help', menu = Help_Menu)
+        Main_menu.add_cascade(label='Help', menu=Help_Menu)
         Help_Menu.add_command(label='About', command=show_about)
         mainframe = ttk.Frame(self.master, padding="30 20")
         mainframe.grid(column=0, row=0, sticky=(S))
@@ -105,7 +105,7 @@ class Application:
         # texts entryes и comboboxes
 
         ttk.Label(mainframe, text='Системы счисления', font='Helvetica 14 bold').grid(column=0, row=0, columnspan=3,
-                                                                                  sticky=N, pady='0 10')
+                                                                                      sticky=N, pady='0 10')
         ttk.Label(mainframe, text='Введите число', font='Helvetica 8').grid(column=0, row=1, sticky=W)
         ttk.Label(mainframe, text='Система', font='Helvetica 8').grid(column=1, row=1, sticky=W, padx='30 0')
         self.systemCom_from = ttk.Combobox(mainframe, width=4, textvariable=StringVar(),
@@ -132,10 +132,11 @@ class Application:
         # frame with buttons for numbersSystem
 
         resultframe = ttk.Frame(self.master, padding="30 0 30 20")
-        resultframe.grid(column=0, row=1, sticky=(N))
+        resultframe.grid(column=0, row=1, sticky=N)
         button = ttk.Button(resultframe, text='Перевести', padding='25 0', width=10, command=self.translate)
         button.grid(column=0, row=0, sticky=N, padx='0 20')
-        button = ttk.Button(resultframe, text='Стереть', padding='25 0', width=10, command= lambda: self.clear(self.entry_to, self.entry_from))
+        button = ttk.Button(resultframe, text='Стереть', padding='25 0', width=10,
+                            command=lambda: self.clear(self.entry_to, self.entry_from))
         button.grid(column=1, row=0, sticky=N, padx='10 0')
 
         # set default values
@@ -144,7 +145,7 @@ class Application:
         self.systemCom_to.insert(0, 2)
         self.result_dots.insert(0, 0)
 
-        #frame with ariphmetic
+        # frame with ariphmetic
 
         additional = ttk.Frame(self.master, padding="30 20")
         additional.grid(column=0, row=2, sticky=(N, W, E, S))
@@ -153,12 +154,13 @@ class Application:
 
         # texts entryes и comboboxes
 
-        ttk.Label(additional, text='Арифметические операции', font='Helvetica 12 bold').grid(column=0, row=0, columnspan=3,
-                                                                                  sticky=N, pady='0 10')
+        ttk.Label(additional, text='Арифметические операции', font='Helvetica 12 bold').grid(column=0, row=0,
+                                                                                             columnspan=3,
+                                                                                             sticky=N, pady='0 10')
         ttk.Label(additional, text='Введите первое число', font='Helvetica 8').grid(column=0, row=1, sticky=W)
         ttk.Label(additional, text='Знак', font='Helvetica 8').grid(column=1, row=1, sticky=W, padx='30 0')
         self.decimalCom = ttk.Combobox(additional, width=4, textvariable=StringVar(),
-                                           values=('+', '-', '×','÷'))
+                                       values=('+', '-', '×', '÷'))
         self.first_digit = ttk.Entry(additional, width=30, textvariable=StringVar())
         self.first_digit.grid(column=0, row=2, sticky=E, pady='5 20')
         self.decimalCom.grid(column=1, row=2, sticky=E, pady='5 20', padx='30 0')
@@ -167,22 +169,24 @@ class Application:
         self.second_digit = ttk.Entry(additional, width=30, textvariable=StringVar())
         self.second_digit.grid(column=0, row=4, sticky=E, pady='5 10')
         self.systemCom = ttk.Combobox(additional, width=4, textvariable=StringVar(),
-                                         values=(tuple((i for i in range(2, 17)))))
+                                      values=(tuple((i for i in range(2, 17)))))
         self.systemCom.grid(column=1, row=4, sticky=E, pady='5 10', padx='30 0')
 
         # frame with buttons for ariphmetic operations
 
         resultframe2 = ttk.Frame(self.master, padding="30 0 30 20")
         resultframe2.grid(column=0, row=4, sticky=(N, W, E, S))
-        button = ttk.Button(resultframe2, text='Посчитать', padding='25 0', width=10, command=self.ariphmetics_operations)
+        button = ttk.Button(resultframe2, text='Посчитать', padding='25 0', width=10,
+                            command=self.ariphmetics_operations)
         button.grid(column=0, row=0, sticky=N, columnspan=2, padx='0 20')
-        button = ttk.Button(resultframe2, text='Стереть', padding='25 0', width=10, command= lambda: self.clear(self.first_digit, self.second_digit, self.result))
+        button = ttk.Button(resultframe2, text='Стереть', padding='25 0', width=10,
+                            command=lambda: self.clear(self.first_digit, self.second_digit, self.result))
         button.grid(column=2, row=0, sticky=N, padx='10 0')
         ttk.Label(resultframe2, text='Результат: ', font='Helvetica 12').grid(column=0, row=3, sticky=W, pady='20 0')
         self.result = ttk.Label(resultframe2, text='0', font='Helvetica 12')
-        self.result.grid(column=1, row=3, columnspan = 2 ,sticky=W, pady='20 0')
+        self.result.grid(column=1, row=3, columnspan=2, sticky=W, pady='20 0')
 
-        #default values for comboboxes
+        # default values for comboboxes
 
         self.decimalCom.insert(0, "+")
         self.systemCom.insert(0, 2)
@@ -193,20 +197,21 @@ class Application:
         self.first_digit.insert(0, 0)
         self.second_digit.insert(0, 0)
 
-        #fixed window
+        # fixed window
 
         self.wind_status = 1
         self.master.update()
         w = root.winfo_width()  # width of window
-        h = int(root.winfo_height() / 1.9) # height of window
+        h = int(root.winfo_height() / 1.9)  # height of window
         self.master.maxsize(width=w, height=h)
         self.master.minsize(width=w, height=h)
 
-        #buttons on keyboard
+        # buttons on keyboard
 
         self.master.bind('<Escape>', self.more_functions)
-        self.master.bind("<Any-KeyRelease>", self.do_it )
-    #for clear entryes ans result label
+        self.master.bind("<Any-KeyRelease>", self.do_it)
+
+    # for clear entryes ans result label
 
     def clear(self, *list_with):
 
@@ -216,7 +221,7 @@ class Application:
             else:
                 i.delete(0, END)
 
-    #after this funсtion window's height decreases or increases
+    # after this funсtion window's height decreases or increases
 
     def more_functions(self, *args):
         self.master.update()
@@ -236,7 +241,8 @@ class Application:
     def ten_to_q(self, number, base):
         '''функция перевода из десятичной системы счисления
         в любую другую систему счисления'''
-        exp = re.split('\.|,', number)
+        exp = re.split('[.,]'
+                       '', number)
         print(exp)
         number_int = exp[0]
         alphabet = "0123456789ABCDEF"
@@ -244,11 +250,11 @@ class Application:
         number_int = int(number_int)
         while number_int:
             number_int, y = divmod(number_int, base)
-            r = alphabet[y]+r
+            r = alphabet[y] + r
         if len(exp) == 0:
             return '0'
         if len(exp) > 1 and int(self.result_dots.get()) > 0:
-            return r +re.findall('\.|,' , number)[0] +self.fract_ten_to_q(exp[-1], base, self.result_dots.get())
+            return r + re.findall('[.,]', number)[0] + self.fract_ten_to_q(exp[-1], base, self.result_dots.get())
         else:
             return r
 
@@ -256,7 +262,7 @@ class Application:
         '''функция перевода из любой системы счисления
         в десятичную систему счисления'''
         print(number, base)
-        exp = re.split('\.|,', number)
+        exp = re.split('[.,]', number)
         print(exp)
         number_int = exp[0]
         num_str = number_int[::-1]
@@ -266,26 +272,27 @@ class Application:
             if dig.isdigit():
                 dig = int(dig)
             else:
-                dig = ord(dig.upper())-ord('A')+10
-            num += dig*(base**k)
+                dig = ord(dig.upper()) - ord('A') + 10
+            num += dig * (base ** k)
         if len(exp) == 0:
             return '0'
         elif len(exp) > 1 and int(self.result_dots.get()) > 0:
-            return str(num) + re.findall('\.|,' , str(number))[0] + self.fract_q_to_ten(exp[-1], base, self.result_dots.get())
+            return str(num) + re.findall('[.,]', str(number))[0] + self.fract_q_to_ten(exp[-1], base,
+                                                                                       self.result_dots.get())
         else:
             return str(num)
 
     def fract_ten_to_q(self, number, base, comma=10):
         alphabet = "0123456789ABCDEF"
-        alphabet = {str(i) : alphabet[i] for i in range(len(alphabet))}
-        number = float('0.'+number)
+        alphabet = {str(i): alphabet[i] for i in range(len(alphabet))}
+        number = float('0.' + number)
         result = ''
-        while number != 0 and len(result)<int(comma)+20:
+        while number != 0 and len(result) < int(comma) + 20:
             number *= int(base)
-            exp = re.split('\.', str(number))
+            exp = re.split("\.", str(number))
             result += alphabet[exp[0]]
-            number = float('0.'+exp[-1])
-        result = result + '0'*(int(comma) - len(result))
+            number = float('0.' + exp[-1])
+        result = result + '0' * (int(comma) - len(result))
         result = result[:int(comma)]
         print('result', result)
         return result
@@ -295,7 +302,7 @@ class Application:
         number = [int(alphabet.index(i.upper())) for i in list(number)]
         result = 0
         for i in range(0, len(number)):
-            result += number[i] * int(base) ** ((i+1) // -1)
+            result += number[i] * int(base) ** ((i + 1) // -1)
         result = str(round(float(result), int(comma)))
         result = str(result)[2:]
         result += (int(comma) - len(result)) * '0'
@@ -308,16 +315,16 @@ class Application:
         number = self.entry_from.get()
         base = int(self.systemCom_from.get())
         to_base = int(self.systemCom_to.get())
-        print(number,'-', base, '-',to_base)
+        print(number, '-', base, '-', to_base)
         self.entry_to.delete(0, END)
         if base == 10:
             self.entry_to.insert(0, self.ten_to_q(number, to_base))
         elif to_base == 10:
-            self.entry_to.insert(0,self.q_to_ten(number, base))
+            self.entry_to.insert(0, self.q_to_ten(number, base))
         else:
-            self.entry_to.insert(0,self.ten_to_q(self.q_to_ten(number, base), to_base))
+            self.entry_to.insert(0, self.ten_to_q(self.q_to_ten(number, base), to_base))
 
-    #ariphmetics operations will processing when user press button посчитать
+    # ariphmetics operations will processing when user press button посчитать
 
     def ariphmetics_operations(self):
         '''функция арифметический операций в разных системах исчисления, данная
@@ -339,16 +346,20 @@ class Application:
             self.result['text'] = '0'
 
     def add(self, first_digit, second_digit, base):
-        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) + float(self.q_to_ten(second_digit, base))), base)
+        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) + float(self.q_to_ten(second_digit, base))),
+                             base)
 
     def minus(self, first_digit, second_digit, base):
-        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) - float(self.q_to_ten(second_digit, base))), base)
+        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) - float(self.q_to_ten(second_digit, base))),
+                             base)
 
     def mult(self, first_digit, second_digit, base):
-        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) * float(self.q_to_ten(second_digit, base))), base)
+        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) * float(self.q_to_ten(second_digit, base))),
+                             base)
 
     def dev(self, first_digit, second_digit, base):
-        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) / float(self.q_to_ten(second_digit, base))), base)
+        return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) / float(self.q_to_ten(second_digit, base))),
+                             base)
 
     # prohibition of input of some characters, main function which we will call
 
@@ -363,11 +374,11 @@ class Application:
         """Проверяет вводимые данные"""
         alpha = '.,0123456789abcdef'
         data = field.get()
-        if data != '' and data[-1] not in alpha[:int(base.get())+2] :
+        if data != '' and data[-1] not in alpha[:int(base.get()) + 2]:
             print('no god please nooo')
             result = ''
             for i in field.get():
-                if i in alpha[:int(base.get())+2]:
+                if i in alpha[:int(base.get()) + 2]:
                     result += i
 
             field.delete(0, END)
@@ -383,8 +394,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
 
 # version 0.1.1
 # version 0.1.1)
