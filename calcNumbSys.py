@@ -205,7 +205,7 @@ class Application:
         #buttons on keyboard
 
         self.master.bind('<Escape>', self.more_functions)
-
+        self.master.bind("<Any-KeyRelease>", self.do_it )
     #for clear entryes ans result label
 
     def clear(self, *list_with):
@@ -350,7 +350,29 @@ class Application:
     def dev(self, first_digit, second_digit, base):
         return self.ten_to_q(str(float(self.q_to_ten(first_digit, base)) / float(self.q_to_ten(second_digit, base))), base)
 
+    # prohibition of input of some characters, main function which we will call
 
+    def do_it(self, *args):
+        self.control_type(self.entry_from, self.systemCom_from)
+        self.control_type(self.first_digit, self.systemCom)
+        self.control_type(self.second_digit, self.systemCom)
+
+    # useful function for funсtion from above
+
+    def control_type(self, field, base, *args):
+        """Проверяет вводимые данные"""
+        alpha = '.,0123456789abcdef'
+        data = field.get()
+        if data != '' and data[-1] not in alpha[:int(base.get())+2] :
+            print('no god please nooo')
+            result = ''
+            for i in field.get():
+                if i in alpha[:int(base.get())+2]:
+                    result += i
+
+            field.delete(0, END)
+            field.insert(0, result)
+                #messagebox.showerror(title="Ошибка", message="Неверный тип данных, ожидалось число")
 
 def main():
     global root
