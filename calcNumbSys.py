@@ -372,7 +372,7 @@ class Application:
 
             field.delete(0, END)
             field.insert(0, result)
-                #messagebox.showerror(title="Ошибка", message="Неверный тип данных, ожидалось число")
+
 
 def main():
     global root
