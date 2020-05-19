@@ -94,8 +94,14 @@ class Application:
         File_Menu.add_command(label='Exit', command=self.master.destroy)
         Help_Menu = Menu(Main_menu, tearoff=False)
         Main_menu.add_cascade(label='Help', menu=Help_Menu)
-        Main_menu.add_cascade(label='Help', menu=Help_Menu)
         Help_Menu.add_command(label='About', command=show_about)
+        Hot_Menu = Menu(Help_Menu, tearoff=False)
+        Help_Menu.add_cascade(label='Hot Keys', menu=Hot_Menu)
+        Hot_Menu.add_command(label='Change View ?')
+        Hot_Menu.add_command(label='Перевести ?')
+        Hot_Menu.add_command(label='Посчитать ?')
+        Hot_Menu.add_command(label='Стереть1 ?')
+        Hot_Menu.add_command(label='Exit Alt+f4')
         mainframe = ttk.Frame(self.master, padding="30 20")
         mainframe.grid(column=0, row=0, sticky=(S))
         self.master.columnconfigure(0, weight=1)
@@ -209,6 +215,7 @@ class Application:
         # buttons on keyboard
 
         self.master.bind('<Escape>', self.more_functions)
+        self.master.bind('<Alt-F4>', lambda x: self.master.destroy())
         self.master.bind("<Any-KeyRelease>", self.do_it)
 
     # for clear entryes ans result label
